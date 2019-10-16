@@ -12,16 +12,24 @@
 </head>
 <body>
 <%
-    String regNo = null;
+    String regNoS = null;
+    String regNoC = null;
+
+    if (session.getAttribute("userreg") == null) {
+        response.sendRedirect("index.jsp");
+    } else regNoS = (String) session.getAttribute("userreg");
+    String userName = null;
+    String sessionID = null;
+
     Cookie[] cookies = request.getCookies();
     if (cookies != null) {
         for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("userreg")) regNo = cookie.getValue();
-        }
+            if (cookie.getName().equals("userreg"))
+                regNoC = cookie.getValue();
     }
-    if (regNo == null) response.sendRedirect("index.jsp");
 %>
-<h3>Hi <%=regNo %>, Login successful.</h3>
+<h3>Hi <%=regNoC %>, Login successful. your Session Name is <%=regNoS%>
+</h3>
 <br>
 <form action="logout" method="post">
     <input type="submit" value="Logout">
