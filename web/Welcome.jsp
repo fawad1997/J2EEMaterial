@@ -17,7 +17,8 @@
 
     if (session.getAttribute("userreg") == null) {
         response.sendRedirect("index.jsp");
-    } else regNoS = (String) session.getAttribute("userreg");
+    } else
+        regNoS = (String) session.getAttribute("userreg");
     String userName = null;
     String sessionID = null;
 
@@ -26,6 +27,7 @@
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("userreg"))
                 regNoC = cookie.getValue();
+        }
     }
 %>
 <h3>Hi <%=regNoC %>, Login successful. your Session Name is <%=regNoS%>
